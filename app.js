@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const fetch = require('node-fetch');
 const indexRouter = require('./routes/index');
 
 const app = express();
@@ -15,10 +14,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use the router for handling routes
 app.use('/', indexRouter);
 
-// Endpoint to receive a   URL and consume it
+// Endpoint to receive a URL and consume it
 app.post('/consume-url', async (req, res) => {
   const { url } = req.body;
   try {
+    const fetch = (await import('node-fetch')).default;
     const response = await fetch(url);
     const data = await response.text();
     res.status(response.status).send(data);
