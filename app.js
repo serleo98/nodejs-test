@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use the router for handling routes
 app.use('/', indexRouter);
 
-// Endpoint to receive a URL and consume it
+// Endpoint to receive a   URL and consume it
 app.post('/consume-url', async (req, res) => {
   const { url } = req.body;
   try {
